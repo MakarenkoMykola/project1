@@ -106,4 +106,112 @@ for (let i = 0; i <= lines; i++) {
 }
 
 console.log(result);
+
+
+function showFirstMassage(text){
+	console.log(text);
+	console.log(num);  
+}
+showFirstMassage("Hello world!");
+console.log(num);
+
+function calc(a, b) {
+	return (a+b);
+}
+
+console.log(calc(4, 3));
+console.log(calc(5, 6));
+
+function ret() {
+	let num = 50;
+	return num;
+}
+const anotherNum = ret();
+console.log(anotherNum);
+
+const logger = function() {
+	console.log("Hello");
+};
+logger();
+
+const calc = (a, b) => a + b;
+
+
+const usdCurr = 38;
+const discount = 0.9;
+
+function convert(amount, curr) {
+	return curr * amount;
+}
+function promotion(result) {
+	console.log(result*discount);
+	
+}
+
+const res = convert(500, usdCurr);
+promotion(res);
+
+
+function test() {
+	for (let i=0; i<5; i++) {
+		console.log(i);
+		if (i === 3) return;//undefined
+	}
+	console.log("Done");
+}
+test();
+
+function doNothing() {};
+console.log(doNothing() === undefined);
+
+function sayHello(name){
+	return `Привіт, ${name}!`;
+}
+sayHello("Ivan");
+
+function returnNeighboringNumbers(num) {
+	return[num-1, num, num+1];
+}
+returnNeighboringNumbers(5);
+
+function getMathResult(num, times) {
+	if (typeof(times) !== "number" || times <= 0) {
+		return num;
+	}
+
+	let str = "";
+
+	for (let i = 1; i <= times; i++) {
+		if (i === times) {
+			str += `${num * i}`;
+		} else {
+			str += `${num * i}---`;
+		}
+	}
+
+	return str;
+}
+
+getMathResult(10, 5);
+
+const str = "test";
+
+
+console.log(str.toUpperCase());
+console.log(str.toLowerCase());
+console.log(str);
+
+const fruit = "Some fruit";
+
+console.log(fruit.indexOf("fruit"));
+
+const logg = "Hello world";
+console.log(logg.slice(6, 11));
+console.log(logg.substring(6, 11));
+console.log(logg.substr(6, 11));
 */
+const num = 12.2;
+console.log(Math.round(num));
+
+const test = "12.2px";
+console.log(parseInt(test));

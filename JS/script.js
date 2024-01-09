@@ -1,6 +1,16 @@
 "use strict";
 
-const numberOfFilms = +prompt("Скільки фільмів ви уже подивились?", "");
+let numberOfFilms;
+
+function start() {
+	numberOfFilms = +prompt("Скільки фільмів ви уже подивились?", "");
+
+	while (numberOfFilms == "" || numberOfFilms == null || isNaN(numberOfFilms)) {
+		numberOfFilms = +prompt("Скільки фільмів ви уже подивились?", "");	
+	}
+}
+
+start();
 
 const personalMovieDB = {
 	count: numberOfFilms,
@@ -10,37 +20,50 @@ const personalMovieDB = {
 	privat: false
 };
 
-/*const a = prompt("Один з останніх переглянутих фільмів?", ""),
-	  b = prompt("На скільки оцінете його?", ""),
-	  c = prompt("Один з останніх переглянутих фільмів?", ""),
-	  d = prompt("На скільки оцінете його?", "");
-
-personalMovieDB.movies[a] = b;	  
-personalMovieDB.movies[c] = d;
-*/
-for (let i=0; i < 2; i++) {
-	const a = prompt("Один з останніх переглянутих фільмів?", ""),
-	      b = prompt("На скільки оцінете його?", "");
-
-	  	if (a != null && b != null && a != "" && b != "" && a.length < 50) {
-		personalMovieDB.movies[a] = b;
-		console.log("done");
-	} else{
-		console.log("error");
-		i--;
+function rememberMyFilms() {
+	for (let i=0; i < 2; i++) {
+		const a = prompt("Один з останніх переглянутих фільмів?", ""),
+			  b = prompt("На скільки оцінете його?", "");
+	
+			  if (a != null && b != null && a != "" && b != "" && a.length < 50) {
+			personalMovieDB.movies[a] = b;
+			console.log("done");
+		} else{
+			console.log("error");
+			i--;
+		}
 	}
 }
 
-/*if (personalMovieDB.count < 10){
-	console.log("Переглянуто мало фільмів");
-} else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
-	console.log("Ти класний глядач");
-}  else if (personalMovieDB.count >= 30 ) {
-	console.log("Ти кіноман");
-} else {
-	console.log("Сталася помилка");
+rememberMyFilms();
+
+
+function detectedPersonalLevel() {
+	if (personalMovieDB.count < 10){
+		console.log("Переглянуто мало фільмів");
+	} else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
+		console.log("Ти класний глядач");
+	}  else if (personalMovieDB.count >= 30 ) {
+		console.log("Ти кіноман");
+	} else {
+		console.log("Сталася помилка");
+	}
+}
+detectedPersonalLevel();
+
+function showMyDB (hidden) {
+	if (!hidden) {
+		console.log(personalMovieDB);
+	}
 }
 
-console.log(personalMovieDB);
-*/
+showMyDB(personalMovieDB.privat);
+//console.log(personalMovieDB);
 
+function writeYourGenres() {
+	for (let i=1; i <=3; i++) {
+		 personalMovieDB.genres[i-1] = prompt(`Жанр який вам подобається під номером ${i}`);
+	}
+}
+
+writeYourGenres();
