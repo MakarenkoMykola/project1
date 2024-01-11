@@ -209,9 +209,150 @@ const logg = "Hello world";
 console.log(logg.slice(6, 11));
 console.log(logg.substring(6, 11));
 console.log(logg.substr(6, 11));
-*/
+
 const num = 12.2;
 console.log(Math.round(num));
 
 const test = "12.2px";
 console.log(parseInt(test));
+
+function calculateVolumeAndArea(length) {
+	if (typeof (length) !== "number" || length < 0 || !Number.isInteger(length)) {
+		return "При вычислении произошла ошибка";
+	}
+
+	let volume = 0,
+		area = 0;
+
+	volume = length * length * length;
+	// length ** 3 - это тоже самое, что и выше или варианты через цикл.
+	// ** - это оператор степени, напоминаю. Но онлайн редактор его не принимает =/
+	area = 6 * (length * length);
+
+	return `Объем куба: ${volume}, площадь всей поверхности: ${area}`;
+}
+
+calculateVolumeAndArea(5);
+
+function getCoupeNumber(seatNumber) {
+	if (typeof (seatNumber) !== "number" || seatNumber < 0 || !Number.isInteger(seatNumber)) {
+		return "Ошибка. Проверьте правильность введенного номера места";
+	}
+
+	if (seatNumber === 0 || seatNumber > 36) {
+		return "Таких мест в вагоне не существует";
+	}
+
+	return Math.ceil(seatNumber / 4);
+	// тут очень много вариантов решения, но выбрал один из элегантных :)
+}
+
+getCoupeNumber(33);
+
+function getTimeFromMinutes(minutesTotal) {
+	if (typeof (minutesTotal) !== "number" || minutesTotal < 0 || !Number.isInteger(minutesTotal) || minutesTotal <= 600) {
+		return "Ошибка. Проверьте правильность введенного номера места";
+
+	}const hours = Math.floor(minutesTotal / 60);
+	const minutes = minutesTotal % 60;
+
+	let hoursStr = "";
+
+	switch (hours) {
+	case 0: 
+		hoursStr = "часов";
+		break;
+	case 1:
+		hoursStr = "час";
+		break;
+	case 2:
+	case 3:
+	case 4:
+		hoursStr = "часа";
+		break;
+	default:
+		hoursStr = "часов";
+	}
+
+	return `Это ${hours} ${hoursStr} и ${minutes} минут`;
+}
+
+getTimeFromMinutes(180);
+
+function findMaxNumber(a, b ,c, d) {
+	
+	if (typeof(a) !== "number" ||
+        typeof(b) !== "number" ||
+        typeof(c) !== "number" ||
+        typeof(d) !== "number") {
+		return 0;
+	} else {
+		return Math.max(a, b ,c, d);
+	}
+}
+
+findMaxNumber(1, 5, 6.6, 10.5);
+findMaxNumber(1, 5, "6", "10");
+
+function first() {
+	setTimeout(function() {
+		console.log(1);
+	}, 500);
+}
+
+function second() {
+	console.log(2);
+}
+
+first();
+second();
+
+function lernsJS(lang, callback) {
+	console.log(`Я вчу: ${lang}`);
+	callback();
+}
+
+function done() {
+	console.log("Я пройшов цей урок!");
+}
+lernsJS("JavaScript", done);
+
+*/
+
+const options = {
+	name: "test",
+	width: 1024,
+	height: 1024,
+	colors: {
+		border: "black",
+		bg: "red"
+	},
+	makeTest: function() {
+		console.log("Test");
+	}
+};
+
+options.makeTest();
+
+const {border, bg} = options.colors;
+console.log(border);
+/*console.log(Object.keys(options).length);
+console.log(options.name);
+//видалити вказану властивість
+//delete options.name;
+//console.log(options);
+let counter = 0;
+for (let key in options) {
+	if (typeof(options[key]) === "object") {
+		for (let i in options[key]) {
+			console.log(`Властивість ${i} має значення ${options[key][i]}`);
+			
+		}
+	} else {
+
+		console.log(`Властивість ${key} має значення ${options[key]}`);
+		counter++;
+	}
+}
+console.log(counter);
+*/

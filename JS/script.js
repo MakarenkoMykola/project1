@@ -22,10 +22,10 @@ const personalMovieDB = {
 
 function rememberMyFilms() {
 	for (let i=0; i < 2; i++) {
-		const a = prompt("Один з останніх переглянутих фільмів?", ""),
-			  b = prompt("На скільки оцінете його?", "");
+		const a = prompt("Один з останніх переглянутих фільмів?", "").trim(),
+	          b = prompt("На скільки оцінете його?", "");
 	
-			  if (a != null && b != null && a != "" && b != "" && a.length < 50) {
+	     if (a != null && b != null && a != "" && b != "" && a.length < 50) {
 			personalMovieDB.movies[a] = b;
 			console.log("done");
 		} else{
@@ -62,7 +62,7 @@ showMyDB(personalMovieDB.privat);
 
 function writeYourGenres() {
 	for (let i=1; i <=3; i++) {
-		 personalMovieDB.genres[i-1] = prompt(`Жанр який вам подобається під номером ${i}`);
+		personalMovieDB.genres[i-1] = prompt(`Жанр який вам подобається під номером ${i}`).trim();
 	}
 }
 
