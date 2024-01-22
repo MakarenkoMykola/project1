@@ -430,7 +430,7 @@ newNumbers.a = 10;
 newNumbers.c.x = 10;
 console.log(newNumbers);
 console.log(numbers);
-*/
+
 const add = {
 	d:17,
 	e:20
@@ -469,3 +469,166 @@ const q = {
 	two:2
 };
 const newObj = {...q};
+
+
+const personalPlanPeter = {
+	name: "Peter",
+	age: "29",
+	skills: {
+		languages: ["ru", "eng"],
+		programmingLangs: {
+			js: "20%",
+			php: "10%"
+		},
+		exp: "1 month"
+	},
+	showAgeAndLangs: function(plan) {
+		const {age} = plan;
+		const {languages} = plan.skills;
+		let str = `Мне ${age} и я владею языками: `;
+
+		languages.forEach(function(lang) {
+			str += `${lang.toUpperCase()} `;
+		});
+
+		return str;
+	}
+};
+
+personalPlanPeter.showAgeAndLangs(personalPlanPeter);
+
+function showExperience(plan) {
+	const {exp} = plan.skills;
+	return exp;
+}
+
+showExperience(personalPlanPeter);
+
+function showProgrammingLangs(plan) {
+	let str = "";
+	const {programmingLangs} = plan.skills;
+	for (let key in programmingLangs) {
+		str += `Язык ${key} изучен на ${programmingLangs[key]}\n`;
+	}
+
+	return str;
+}
+
+showProgrammingLangs(personalPlanPeter);
+
+const family = ["Peter", "Ann", "Alex", "Linda"];
+
+function showFamily(arr) {
+	let str = "";
+
+	arr.length === 0 ? str = "Семья пуста" : str = "Семья состоит из: ";
+
+	arr.forEach(member => {
+		str += `${member} `;
+	});
+
+	return str;
+}
+
+
+showFamily(family);
+
+const favoriteCities = ["liSBon", "ROME", "miLan", "Dublin"];
+
+function standardizeStrings(arr) {
+	arr.forEach(city => {
+		console.log(city.toLowerCase());
+	});
+}
+
+standardizeStrings(favoriteCities);
+
+
+let str = "some";
+let strObj = new String(str);
+//console.log(typeof(str));
+//console.log(typeof(strObj));
+
+console.dir([1, 2, 3]);
+
+const soldier = {
+	health:400,
+	armor:100,
+	sayHello: function() {
+		console.log("Hello");
+	}
+};
+const jonh = Object.create(soldier);
+
+//const jonh = {
+//	health:100
+//};
+//jonh.__proto__ =soldier;
+
+Object.setPrototypeOf(jonh, soldier);
+//console.log(jonh.armor);
+jonh.sayHello();
+
+
+// To string
+console.log(typeof(String(null)));
+console.log(typeof(String(4)));
+
+//2
+console.log(typeof(4 + ""));
+const num = 5;
+console.log("https://uar.net/catalog/" + num);
+const fontSize = 25 + "px";
+ //To Number
+ //1
+ console.log(typeof(Number("4")));
+ //2
+ console.log(typeof(+"4"));
+ //3
+ console.log(typeof(parseInt("4", 10)));
+ let answ = +prompt("Hello", "");
+ //To boolean
+ let switcher = null;
+ if(switcher) {
+	console.log("Working...");
+ }
+ switcher = 1;
+ if(switcher) {
+	console.log("Working...");
+ }
+ //2
+
+console.log(typeof(Boolean("4")));
+//3
+console.log(typeof(!!"4"));
+
+
+let number = 5; debugger;
+
+function logNumber() {
+	 
+	console.log(number);debugger;
+}
+
+number = 6;
+logNumber();debugger;
+
+number = 8;
+logNumber();debugger;
+*/
+function createCounter() {
+	let counter = 0;
+
+	const myFunction = function() {debugger;
+		counter = counter + 1;debugger;
+		return counter;debugger;
+	};
+	return myFunction;
+}
+debugger;
+const increment = createCounter();
+const c1 = increment();debugger;
+const c2 = increment();debugger;
+const c3 = increment();debugger;
+
+console.log(c1, c2, c3);
