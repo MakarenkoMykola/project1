@@ -615,7 +615,7 @@ logNumber();debugger;
 
 number = 8;
 logNumber();debugger;
-*/
+
 function createCounter() {
 	let counter = 0;
 
@@ -632,3 +632,259 @@ const c2 = increment();debugger;
 const c3 = increment();debugger;
 
 console.log(c1, c2, c3);
+
+const btn = document.querySelector("button");
+btn.onclick = function() {
+	alert("Click");
+};
+
+const btns = document.querySelectorAll("button");
+const overlay = document.querySelector(".overlay");
+//let i = 0;
+const deleteElement = (e) => {
+	console.log(e.currentTarget);
+	console.log(e.type);
+	//i++;
+	//if (i == 1){
+	//	btn.removeEventListener("click", deleteElement);
+	//}
+};
+//btn.addEventListener("click", deleteElement);
+//overlay.addEventListener("click", deleteElement);
+btns.forEach(btn => {
+	btn.addEventListener("click", deleteElement, {once: true});
+});
+
+const link = document.querySelector("a");
+link.addEventListener("click", function(event) {
+	event.preventDefault();
+
+	console.log(e.target);
+});
+	
+//console.log(document.head);
+//console.log(document.documentElement);
+//console.log(document.body.childNodes);
+//console.log(document.body.firstChild);
+//console.log(document.body.firstElementChild);
+//console.log(document.body.lastChild);
+
+//console.log(document.querySelector("#current").parentNode.parentNode);
+//console.log(document.querySelector("#current").parentElement);
+//console.log(document.querySelector("[data-current=\"3\"]").nextElementSibling);
+
+for (let node of document.body.childNodes) {
+	if (node.nodeName == "#text") {
+		continue;
+	}
+	console.log(node);
+}
+
+
+function pow(x, n) {
+	let result = 1;
+
+	for (let i = 0; i < n; i++) {
+		result *=x;
+	}
+	return result;
+}
+
+function pow(x, n) {
+	if (n ===1) {
+		return x;
+		
+	}else {
+		return x*pow(x, n-1);
+	}
+	}
+	
+let students = {
+	js: [{
+		name:"John",
+		progress: 100
+	},{
+		name: "Ivan",
+		progress: 60
+	}],
+
+	html: {
+		basic: [{
+			name: "Peter",
+			progress: 20
+		}, {
+			name: "Ann",
+			progress:18
+		}],
+
+		pro: [{
+			name: "Sam",
+			progress: 10
+		}],
+
+		semi: {
+			students: [{
+				name: "Test",
+				progress: 100
+			}]
+		}
+	}
+};
+// ПЕРЕБІР СТРУКТУРИ ДАНИХ
+function getTotalProgressByIteration(data) {
+	let total = 0;
+	let students = 0;
+
+	for (let course of Object.values(data)) {
+		if (Array.isArray(course)) {
+			students += course.length;
+
+			for (let i = 0; i < course.length; i++) {
+				total += course[i].progress;
+			}
+		} else {
+			for (let subCourse of Object.values(course)){
+				students += subCourse.length;
+			
+				for (let i = 0; i < subCourse.length; i++) {
+					total += subCourse[i].progress;
+				}
+			}
+		}
+	}
+
+	return total / students;
+}
+
+//console.log(getTotalProgressByIteration(students));
+// ПЕРЕБІР СТРУКТУРИ ДАНИХ
+
+function getTotalProgressByRecursion(data) {
+	if (Array.isArray(data)) {
+		let total = 0;
+
+		for (let i = 0; i < data.length; i++) {
+			total += data[i].progress;
+		}
+		return [total, data.length];
+	} else {
+		let total = [0, 0];
+
+		for (let subData of Object.values(data)) {
+			const subDataArr = getTotalProgressByRecursion(subData);
+			total[0] += subDataArr[0];
+			total[1] += subDataArr[1];
+
+		}
+		return total;
+	}
+}
+
+const result = getTotalProgressByRecursion(students);
+
+console.log(result[0]/result[1]);
+*/
+// Практика
+//щоб видалити рекламу зі сторінки
+// 1.знайти картинки з рекламою
+
+document.addEventListener("DOMContentLoaded"), () => {
+	const adv = document.querySelectorAll(".promo__adv img");
+	//код почне працювати як дом-структура буде завантажена
+	//2.видалити
+	
+
+	//міняємо жанр фільма
+	const poster = document.querySelector(".promo__bg");
+	const genre = poster.querySelector(".promo__genre");
+	const deleteAdv = (arr) => {
+		arr.forEach(item => {
+			item.remove();
+		});
+	};
+
+	
+
+	
+	//
+	const movieList = document.querySelector(".promo__ineractive-list");
+
+	movieList.innerHTML = ""; //почистили елемент
+	movieDB.movies.sort(); //сортуємо по алфавіту назви фільмів
+
+	movieDB.movies.forEach((film, i) => {
+		movieList.innerHTML += `
+<li class="promo__interactive-item">${i+1}.${film}
+<div class="delete"></div>
+</li>
+`;
+
+
+	});
+	const addForm = document.querySelector("form.add");
+	const addInput = addForm.querySelector(".adding__input");
+	const checkbox = addForm.querySelector("[type=\"checkbox\"]");
+
+	addForm.addEventListener("submit", (event) => {
+		event.preventDefault();
+
+		let newFilm = addInput.value;
+		const favorite = checkbox.checked;
+
+		
+	
+
+		if (newFilm) {
+
+			if(newFilm.length > 21) {
+				newFilm = `${newFilm.substring(0, 22)}...`;
+			}
+			movieDB.movies.push(newFilm);
+			sortArr(movieDB.movies);
+			createMovieList(movieDB.movies, movieList);
+		}
+		event.target.reset();
+
+	});
+	const makeChanges = () => {
+		genre.textContent = "драма";
+
+		//міняємо фонову картинку
+	
+		poster.style.backgroundImage = "url(\"img/bg.jpg\")";
+	
+	};
+	
+
+	const sortArr = (arr) => {
+		arr.sort();
+	};
+
+	sortArr(movieDB.movies); //сортуємо по алфавіту назви фільмів
+
+	function createMovieList(films, parent) {
+		movieList.innerHTML = ""; //почистили елемент
+		
+
+		movieDB.movies.forEach((films, i) => {
+			parent.innerHTML += `
+<li class="promo__interactive-item">${i+1}.${film}
+<div class="delete"></div>
+</li>
+`;	
+		});
+		document.querySelectorAll(".delete").forEach((btn, i) => {
+			btn.addEventListener("click", () => {
+				btn.parentElement.remove();
+				movieDB.movies.splice(i, 1);
+			});
+		});
+
+	}
+	makeChanges();
+	deleteAdv(adv);
+	sortArr(movieDB.movies);
+	createMovieList(movieDB.movies, movieList);
+};
+
+
