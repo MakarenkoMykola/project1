@@ -20,7 +20,7 @@ btns[0].addEventListener("click", () => {
 
 	btns[1].classList.toggle("red");
 });
-*/
+
 //делегування подій
 const btns = document.querySelectorAll("button"),
 	wrapper = document.querySelector(".btn-block");
@@ -40,3 +40,4 @@ wrapper.addEventListener("click", (event) => {
 const btn = document.createElement("button");
 btn.classList.add("red");
 wrapper.append(btn);
+*/
